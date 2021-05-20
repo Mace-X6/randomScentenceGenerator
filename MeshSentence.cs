@@ -5,18 +5,24 @@ namespace csharpProject3
     public class MeshSentence
     {
         private string sentence;
-        public string GenerateSentence(bool includeCompound)
+        public string GenerateSentence(bool includeCompound, bool includePunctuation = true, int chooseCase = 69)
         {
             var WordManager = new WordManager();
             var Rnd = new Random();
             int randomness;
-            if (includeCompound){
-                randomness = 6;
+            if (includeCompound)
+            {
+                randomness = Rnd.Next(6);
             }
-            else {
-                randomness = 5;
+            else
+            {
+                randomness = Rnd.Next(4);
             }
-            switch (Rnd.Next(randomness))
+            if (chooseCase <= 6)
+            {
+                randomness = chooseCase;
+            }
+            switch (randomness)
             {
                 case 0:
                     this.sentence = $"{WordManager.RndSubjectVerb(false, false)}";
@@ -33,18 +39,22 @@ namespace csharpProject3
                 case 4:
                     this.sentence = $"{WordManager.RndSubjectVerb(true, true)} {WordManager.RndAdjective()}?";
                     break;
-                    case 5:
-                    this.sentence = $"{this.GenerateSentence(false)}, {this.GenerateSentence(false)}";
+                case 5:
+                    this.sentence = $"{this.GenerateSentence(false, false)}, {WordManager.RndLinkingWord()} {this.GenerateSentence(false, false)}";
                     break;
             }
-            return this.AddPunctuation(this.sentence);
+            return this.AddPunctuation(this.sentence, includePunctuation);
         }
-        private string AddPunctuation(string inputSentence)
+        private string AddPunctuation(string inputSentence, bool includePunctuation)
         {
-            char endChar;
-            if (inputSentence.EndsWith('?')) { endChar = '\0'; }
-            else { endChar = '.'; }
-            return inputSentence[0].ToString().ToUpper() + inputSentence.Substring(1, inputSentence.Length - 1) + endChar;
+            if (includePunctuation)
+            {
+                char endChar;
+                if (inputSentence.EndsWith('?') || inputSentence.EndsWith('.')) { endChar = '\0'; }
+                else { endChar = '.'; }
+                return inputSentence[0].ToString().ToUpper() + inputSentence.Substring(1, inputSentence.Length - 1) + endChar;
+            }
+            else return inputSentence;
         }
     }
 }

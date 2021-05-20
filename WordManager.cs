@@ -116,7 +116,7 @@ namespace csharpProject3
                 this.subjectVerb = $"the {subject} {verb}";
                 if (reverseForQuestion)
                 {
-                    this.subjectVerb = $"{verb} {subject}";
+                    this.subjectVerb = $"{verb} the {subject}";
                 }
             }
             if (10 <= randomNumber && 11 >= randomNumber)

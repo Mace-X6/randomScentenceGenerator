@@ -6,11 +6,11 @@ namespace csharpProject3
     {
         static void Main(string[] args)
         {
-            var MeshScentence = new MeshSentence();
+            var MeshSentence = new MeshSentence();
             int lineAmount = GetLineAmount();
             for (int i = 0; i < lineAmount; i++)
             {
-                MeshScentence.GenerateSentence(true);
+                Console.WriteLine(MeshSentence.GenerateSentence(true));
             }
         }
 
