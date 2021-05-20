@@ -29,17 +29,17 @@ namespace csharpProject3
             {
                 string[] singularObjectArray = File.ReadAllLines(@"C:\Users\mees\Documents\csharpProject3\words\singlenoun");
                 string singularObject = singularObjectArray[Rnd.Next(singularObjectArray.Length)];
-                return $"{this.RndSubjectVerb(false)} the {singularObject}";
+                return $"{this.RndSubjectVerb(false, false)} the {singularObject}";
             }
             else
             {
                 string[] multipleObjectArray = File.ReadAllLines(@"C:\Users\mees\Documents\csharpProject3\words\pluralnoun");
                 string multipleObject = multipleObjectArray[Rnd.Next(multipleObjectArray.Length)];
-                return $"{this.RndSubjectVerb(false)} {multipleObject}";
+                return $"{this.RndSubjectVerb(false, false)} {multipleObject}";
             }
         }
         //=========================================================================================================================================================================
-        public string RndSubjectVerb(bool beVerb)
+        public string RndSubjectVerb(bool beVerb, bool reverseForQuestion)
         {
             var Rnd = new Random();
             int randomNumber = Rnd.Next(15);
@@ -64,6 +64,10 @@ namespace csharpProject3
                 }
 
                 this.subjectVerb = $"{subject} {verb}";
+                if (reverseForQuestion)
+                {
+                    this.subjectVerb = $"{verb} {subject}";
+                }
             }
             if (4 <= randomNumber && 7 >= randomNumber)
             {
@@ -72,7 +76,7 @@ namespace csharpProject3
 
                 string[] verbArray = File.ReadAllLines(@"C:\Users\mees\Documents\csharpProject3\words\verb");
                 string verb = verbArray[Rnd.Next(verbArray.Length)];
-                
+
                 verb = this.ShitVerbConjugation(verb);
 
                 if (beVerb == true)
@@ -81,7 +85,10 @@ namespace csharpProject3
                 }
 
                 this.subjectVerb = $"{subject} {verb}";
-
+                if (reverseForQuestion)
+                {
+                    this.subjectVerb = $"{verb} {subject}";
+                }
             }
             if (8 <= randomNumber && 9 >= randomNumber)
             {
@@ -90,7 +97,7 @@ namespace csharpProject3
 
                 string[] verbArray = File.ReadAllLines(@"C:\Users\mees\Documents\csharpProject3\words\verb");
                 string verb = verbArray[Rnd.Next(verbArray.Length)];
-                
+
                 verb = this.ShitVerbConjugation(verb);
 
                 if (beVerb == true)
@@ -99,6 +106,10 @@ namespace csharpProject3
                 }
 
                 this.subjectVerb = $"the {subject} {verb}";
+                if (reverseForQuestion)
+                {
+                    this.subjectVerb = $"{verb} {subject}";
+                }
             }
             if (10 <= randomNumber && 11 >= randomNumber)
             {
@@ -114,6 +125,10 @@ namespace csharpProject3
                 }
 
                 this.subjectVerb = $"the {subject} {verb}";
+                if (reverseForQuestion)
+                {
+                    this.subjectVerb = $"{verb} {subject}";
+                }
             }
             if (12 <= randomNumber && 14 >= randomNumber)
             {
@@ -121,7 +136,7 @@ namespace csharpProject3
                 string subject = subjectArray[Rnd.Next(subjectArray.Length)];
 
                 string[] verbArray = File.ReadAllLines(@"C:\Users\mees\Documents\csharpProject3\words\verb");
-                string verb = verbArray[Rnd.Next(verbArray.Length)];                
+                string verb = verbArray[Rnd.Next(verbArray.Length)];
 
                 verb = this.ShitVerbConjugation(verb);
 
@@ -131,8 +146,12 @@ namespace csharpProject3
                 }
 
                 this.subjectVerb = $"{subject} {verb}";
+                if (reverseForQuestion)
+                {
+                    this.subjectVerb = $"{verb} {subject}";
+                }
             }
-            
+
             return this.subjectVerb;
         }
         //=========================================================================================================================================================================
@@ -140,27 +159,27 @@ namespace csharpProject3
         {
             string verbCheck = $"{verb[verb.Length - 2]}{verb[verb.Length - 1]}";
 
-                if (verbCheck == "ch" || verbCheck == "sh" || verbCheck[1] == 'o' || verbCheck[1] == 's' || verbCheck[1] == 'x')
-                {
-                    verb = verb + "es";
-                }
-                if (verbCheck[0] == 'a' && verbCheck[1] == 'y' || verbCheck[0] == 'e' && verbCheck[1] == 'y' || verbCheck[0] == 'i' && verbCheck[1] == 'y' || verbCheck[0] == 'o' && verbCheck[1] == 'y' || verbCheck[0] == 'u' && verbCheck[1] == 'y')
-                {
-                    verb = verb + 's';
-                }
-                if (verb == "have")
-                {
-                    verb = "has";
-                }
-                else if (verbCheck[1] == 'y')
-                {
-                    verb = verb.Substring(0, verb.Length - 1) + "ies";
-                }
-                else if (!verb.EndsWith('s'))
-                {
-                    verb = verb + 's';
-                }
-                return verb;
+            if (verbCheck == "ch" || verbCheck == "sh" || verbCheck[1] == 'o' || verbCheck[1] == 's' || verbCheck[1] == 'x')
+            {
+                verb = verb + "es";
+            }
+            if (verbCheck[0] == 'a' && verbCheck[1] == 'y' || verbCheck[0] == 'e' && verbCheck[1] == 'y' || verbCheck[0] == 'i' && verbCheck[1] == 'y' || verbCheck[0] == 'o' && verbCheck[1] == 'y' || verbCheck[0] == 'u' && verbCheck[1] == 'y')
+            {
+                verb = verb + 's';
+            }
+            if (verb == "have")
+            {
+                verb = "has";
+            }
+            else if (verbCheck[1] == 'y')
+            {
+                verb = verb.Substring(0, verb.Length - 1) + "ies";
+            }
+            else if (!verb.EndsWith('s'))
+            {
+                verb = verb + 's';
+            }
+            return verb;
         }
     }
 }
