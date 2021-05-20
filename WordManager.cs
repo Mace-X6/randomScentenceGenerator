@@ -6,6 +6,14 @@ namespace csharpProject3
     {
         private string subjectVerb;
 
+        public string RndLinkingWord()
+        {
+            var Rnd = new Random();
+            string[] linkingWordArray = File.ReadAllLines(@"C:\Users\mees\Documents\csharpProject3\words\linkingWord");
+            string linkingWord = linkingWordArray[Rnd.Next(linkingWordArray.Length)];
+            return linkingWord;
+        }
+        //=========================================================================================================================================================================
         public string RndAdverb()
         {
             var Rnd = new Random();
