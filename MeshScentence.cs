@@ -11,10 +11,10 @@ namespace csharpProject3
             switch (scentenceType)
             {
                 case "subject_verb":
-                    this.scentence = WordManager.RndSubjectVerb(false);
+                    this.scentence = $"{WordManager.RndSubjectVerb(false)}";
                     break;
                 case "subject_verb_object":
-                    this.scentence = WordManager.RndSubjectVerbObject();
+                    this.scentence = $"{WordManager.RndSubjectVerbObject()}";
                     break;
                 case "subject_verb_adjective":
                     this.scentence = $"{WordManager.RndSubjectVerb(true)} {WordManager.RndAdjective()}";
@@ -23,7 +23,11 @@ namespace csharpProject3
                     this.scentence = $"{WordManager.RndSubjectVerb(false)} {WordManager.RndAdverb()}";
                     break;
             }
-            return this.scentence;
+            return AddPunctuation(this.scentence);
+        }
+        private string AddPunctuation(string inputScentence)
+        {
+            return inputScentence[0].ToString().ToUpper() + inputScentence.Substring(1, inputScentence.Length - 2) + '.';
         }
     }
 }
