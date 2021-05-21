@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace csharpProject3
 {
@@ -10,8 +12,11 @@ namespace csharpProject3
             int lineAmount = GetLineAmount();
             for (int i = 0; i < lineAmount; i++)
             {
-                Console.WriteLine(MeshSentence.GenerateSentence(true));
+                string sentence = MeshSentence.GenerateSentence(true);
+                Console.WriteLine(sentence);
+            //    this.output.????(sentence);
             }
+            
         }
 
         static int GetLineAmount()
